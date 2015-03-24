@@ -12,6 +12,8 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+import inspect
+
 import six
 
 from oslo_version._i18n import _
