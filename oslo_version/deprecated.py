@@ -142,7 +142,11 @@ class deprecated(object):
         release = self._translate_release(release)
         release_idx = _ORDERED_RELEASES.index(release)
         new_release = release_idx + self.remove_in
-        return _ORDERED_RELEASES[new_release]
+        try:
+            return _ORDERED_RELEASES[new_release]
+        except IndexError:
+            raise ValueError("No known release that is %s + %d"
+                             % (release.name, self.remove_in))
 
     def _build_message(self):
         as_of = self._translate_release(self.as_of)
