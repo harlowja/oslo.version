@@ -18,9 +18,11 @@ import enum
 class Releases(enum.Enum):
     """Known openstack releases."""
 
-    # NOTE(morganfainberg): Bexar is used for unit test purposes, it is
-    # expected we maintain a gap between Bexar and Folsom in this list.
+    AUSTIN = 'A'
     BEXAR = 'B'
+    CACTUS = 'C'
+    DIABLO = 'D'
+    ESSEX = 'E'
     FOLSOM = 'F'
     GRIZZLY = 'G'
     HAVANA = 'H'
@@ -52,7 +54,10 @@ class Releases(enum.Enum):
 
     @classmethod
     def match(cls, text):
-        """Case insensitive match a string to its enumeration (or none)."""
+        """Case insensitive match a string to its enumeration.
+
+        If no match is found then none is returned.
+        """
         text_lower = text.lower()
         for e in list(cls):
             if e.name.lower() == text_lower:
@@ -63,7 +68,11 @@ class Releases(enum.Enum):
 
 
 # Expose the above enumerations at the module level...
+AUSTIN = Releases.AUSTIN
 BEXAR = Releases.BEXAR
+CACTUS = Releases.CACTUS
+DIABLO = Releases.DIABLO
+ESSEX = Releases.ESSEX
 FOLSOM = Releases.FOLSOM
 GRIZZLY = Releases.GRIZZLY
 HAVANA = Releases.HAVANA
