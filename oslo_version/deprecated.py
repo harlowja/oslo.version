@@ -21,6 +21,9 @@ from oslo_version._i18n import _
 from oslo_version import releases
 
 
+# Get the sorted order so we can just use it...
+_ORDERED_RELEASES = sorted(releases.Releases)
+
 LOG = logging.getLogger(__name__)
 
 
@@ -130,11 +133,10 @@ class deprecated(object):
         # TODO(dstanek): this method will have to be reimplemented once
         #    when we get to the X release because once we get to the Y
         #    release, what is Y+2?
-        releases = sorted(releases.Releases)
         release = self._translate_release(release)
-        release_idx = releases.index(release)
+        release_idx = _ORDERED_RELEASES.index(release)
         new_release = release_idx + self.remove_in
-        return releases[new_release]
+        return _ORDERED_RELEASES[new_release]
 
     def _build_message(self):
         as_of = self._translate_release(self.as_of)
@@ -160,6 +162,6 @@ class deprecated(object):
         return msg, details
 
 
-def _report_deprecated_feature(logger, msg, *args, **kwargs):
+def _report_deprecated_feature(logger, msg, details):
     # TODO...
-    pass
+    print(msg % details)
