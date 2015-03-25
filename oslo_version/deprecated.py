@@ -87,7 +87,8 @@ class deprecated(object):
             before removing (default: 2)
         :param what: name of the thing being deprecated (default: the
             callable's name)
-
+        :param log: logger to use when reporting about the deprecated
+            feature (default: this modules logger)
         """
         self.as_of = as_of
         self.in_favor_of = in_favor_of
