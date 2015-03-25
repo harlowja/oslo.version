@@ -141,9 +141,9 @@ class deprecated(object):
         #    release, what is Y+2?
         release = self._translate_release(release)
         release_idx = _ORDERED_RELEASES.index(release)
-        new_release = release_idx + self.remove_in
+        new_release_idx = release_idx + self.remove_in
         try:
-            return _ORDERED_RELEASES[new_release]
+            return _ORDERED_RELEASES[new_release_idx]
         except IndexError:
             raise ValueError("No known release that is %s + %d"
                              % (release.name, self.remove_in))
