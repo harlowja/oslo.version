@@ -13,11 +13,15 @@
 #    under the License.
 
 import inspect
+import logging
 
 import six
 
 from oslo_version._i18n import _
 from oslo_version import releases
+
+
+LOG = logging.getLogger(__name__)
 
 
 class deprecated(object):
