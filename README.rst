@@ -1,7 +1,7 @@
 Oslo.versions
 =============
 
-All things about `OpenStack`_ versions.
+All things about `OpenStack`_ versions/releases.
 
 * Free software: Apache license
 
