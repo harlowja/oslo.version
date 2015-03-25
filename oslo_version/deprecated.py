@@ -76,7 +76,8 @@ class deprecated(object):
     _deprecated_msg_with_no_alternative_no_removal = _(
         '%(what)s is deprecated as of %(as_of)s. It will not be superseded.')
 
-    def __init__(self, as_of, in_favor_of=None, remove_in=2, what=None):
+    def __init__(self, as_of,
+                 in_favor_of=None, remove_in=2, what=None, log=None):
         """Initialize decorator
 
         :param as_of: the release deprecating the callable. Constants
@@ -92,6 +93,10 @@ class deprecated(object):
         self.in_favor_of = in_favor_of
         self.remove_in = remove_in
         self.what = what
+        if log is None:
+            self.log = LOG
+        else:
+            self.log = log
 
     def __call__(self, func_or_cls):
         if not self.what:
@@ -102,7 +107,7 @@ class deprecated(object):
 
             @six.wraps(func_or_cls)
             def wrapped(*args, **kwargs):
-                _report_deprecated_feature(LOG, msg, details)
+                _report_deprecated_feature(self.log, msg, details)
                 return func_or_cls(*args, **kwargs)
 
             return wrapped
@@ -111,7 +116,7 @@ class deprecated(object):
 
             @six.wraps(orig_init, assigned=('__name__', '__doc__'))
             def new_init(self, *args, **kwargs):
-                _report_deprecated_feature(LOG, msg, details)
+                _report_deprecated_feature(self.log, msg, details)
                 orig_init(self, *args, **kwargs)
 
             func_or_cls.__init__ = new_init
