@@ -138,10 +138,10 @@ class deprecated(object):
 
     def _build_message(self):
         as_of = self._translate_release(self.as_of)
+        remove_in = self._get_safe_to_remove_release(self.as_of)
         details = dict(what=self.what,
                        as_of=as_of.name,
-                       remove_in=self._get_safe_to_remove_release(self.as_of))
-
+                       remove_in=remove_in.name)
         if self.in_favor_of:
             details['in_favor_of'] = self.in_favor_of
             if self.remove_in > 0:
