@@ -16,7 +16,10 @@ import enum
 
 
 class Releases(enum.Enum):
-    """Known openstack releases."""
+    """Known openstack releases.
+
+    See: http://en.wikipedia.org/wiki/OpenStack#Release_history
+    """
 
     AUSTIN = 'A'
     BEXAR = 'B'
