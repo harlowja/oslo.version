@@ -129,7 +129,7 @@ class deprecated(object):
     @staticmethod
     def _translate_release(release):
         if not isinstance(release, releases.Releases):
-            release_enum = releases.Releases.match(release)
+            release_enum = releases.match(release)
             if release_enum is None:
                 raise ValueError("No known release '%s'" % (release))
             return release_enum

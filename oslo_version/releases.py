@@ -55,19 +55,19 @@ class Releases(enum.Enum):
             return self.value < other.value
         return NotImplemented
 
-    @classmethod
-    def match(cls, text):
-        """Case insensitive match a string to its enumeration.
 
-        If no match is found then none is returned.
-        """
-        text_lower = text.lower()
-        for e in list(cls):
-            if e.name.lower() == text_lower:
-                return e
-            if e.value.lower() == text_lower:
-                return e
-        return None
+def match(text):
+    """Case insensitive match a string to its enumeration.
+
+    If no match is found then none is returned.
+    """
+    text_lower = text.lower()
+    for e in list(Releases):
+        if e.name.lower() == text_lower:
+            return e
+        if e.value.lower() == text_lower:
+            return e
+    return None
 
 
 # Expose the above enumerations at the module level...
